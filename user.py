@@ -12,10 +12,10 @@ router = APIRouter(prefix="/users", tags=["user"])
 
 @router.post("/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate,
-                # current_user: schemas.User = Depends(get_current_active_user),
+                current_user: schemas.User = Depends(get_current_active_user),
                 db: Session = Depends(get_db)):
-    # if current_user.role != "admin":
-    #     raise HTTPException(status_code=401, detail="No permission")
+    if current_user.role != "admin":
+        raise HTTPException(status_code=401, detail="No permission")
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")

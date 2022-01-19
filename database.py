@@ -14,6 +14,7 @@ Base = declarative_base()
 
 redis_db = redis.Redis(host='localhost', port=6379)
 
+
 # Dependency
 def get_db():
     db = SessionLocal()
