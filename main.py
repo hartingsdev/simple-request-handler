@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import models
 import schemas
@@ -18,6 +19,14 @@ app = FastAPI()
 app.include_router(user_router)
 app.include_router(item_router)
 app.include_router(script_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/token", response_model=schemas.Token)
