@@ -12,7 +12,7 @@ python-multipart = "^0.0.5"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 SQLAlchemy = "^1.4.29"
-redis = "^4.1.0"
+redis = "^4.4.4"
 
 [tool.poetry.dev-dependencies]
 
